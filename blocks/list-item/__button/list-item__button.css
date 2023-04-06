@@ -14,23 +14,32 @@
 }
 
 .list-item__button:first-of-type {
-    margin-left: 0;
-  }
-  
-  .list-item__button:hover {
-    opacity: 0.7;
-  }
-  
-  .list-item__button.edit {
-    background-image: url('../../../images/Edit.png');
-  }
-  .list-item__button.duplicate {
-    background-image: url('../../../images/Duplicate.png');
-    
-  }
-  .list-item__button.delete {
-    background-image: url('../../../images/Delete.png');
-    width: 20px;
-    height: 20px;
-  
-  }
+  margin-left: 0;
+}
+
+.list-item__button:hover {
+  opacity: 0.7;
+}
+
+.list-item__button.edit {
+  background-image: url('../../../images/Edit.png');
+}
+.list-item__button.duplicate {
+  background-image: url('../../../images/Duplicate.png');
+}
+.list-item__button.delete {
+  background-image: url('../../../images/Delete.png');
+  width: 20px;
+  height: 20px;
+}
+
+.tooltip {
+  position: fixed;
+  padding: 10px 20px;
+  border: 1px solid #b3c9ce;
+  border-radius: 4px;
+  text-align: center;
+  color: #333;
+  background: #fff;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}

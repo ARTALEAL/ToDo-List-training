@@ -19,16 +19,7 @@
                 <input type="text" class="form__input" placeholder="Что-то нужно записать...">
                 <input type="button" class="form__submit" value="Добавить">
             </form>
-            <ul class="list">
-                <li class="list-item">
-                    <span class="list-item__header">Что-то нужно сделать</span>
-                    <div class="list-item__actions">
-                        <button class="list-item__button edit"></button>
-                        <button class="list-item__button duplicate"></button>
-                        <button class="list-item__button delete"></button>
-                    </div>
-                </li>
-            </ul>
+            <ul class="list"></ul>
         </main>
     </div>
     <footer class="footer">Обычный список дел</footer>
@@ -37,9 +28,9 @@
         <li class="list-item">
             <span class="list-item__header"></span>
             <div class="list-item__actions">
-                <button class="list-item__button edit"></button>
-                <button class="list-item__button duplicate"></button>
-                <button class="list-item__button delete"></button>
+                <button class="list-item__button edit" data-tooltip="редактировать"></button>
+                <button class="list-item__button duplicate" data-tooltip="копировать"></button>
+                <button class="list-item__button delete" data-tooltip="удалить"></button>
             </div>
         </li>
     </template>

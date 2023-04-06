@@ -1,4 +1,6 @@
-console.log('test script');
+//Список дел
+const items = ['Что-то нужно сделать'];
+
 const list = document.querySelector('.list');
 const formInput = document.querySelector('.form__input');
 const formButton = document.querySelector('.form__submit');
@@ -12,6 +14,59 @@ formInput.addEventListener(
 
 formButton.addEventListener('click', handleSubmit);
 
+function render() {
+  items.forEach(renderItem);
+}
+
+//Подсказки на кнопках
+let tooltipElem;
+
+document.onmouseover = function (event) {
+  let target = event.target;
+
+  // если у нас есть подсказка...
+  let tooltipHtml = target.dataset.tooltip;
+  console.log(tooltipHtml);
+  if (!tooltipHtml) return;
+
+  // ...создадим элемент для подсказки
+
+  tooltipElem = document.createElement('div');
+  tooltipElem.className = 'tooltip';
+  tooltipHtml === 'удалить' ? (tooltipElem.style.color = 'red') : '';
+  tooltipElem.innerHTML = tooltipHtml;
+  document.body.append(tooltipElem);
+
+  // спозиционируем его сверху от аннотируемого элемента (top-center)
+  let coords = target.getBoundingClientRect();
+
+  let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
+  if (left < 0) left = 0; // не заезжать за левый край окна
+
+  let top = coords.top - tooltipElem.offsetHeight - 5;
+  if (top < 0) {
+    // если подсказка не помещается сверху, то отображать её снизу
+    top = coords.top + target.offsetHeight + 5;
+  }
+
+  tooltipElem.style.left = left + 'px';
+  tooltipElem.style.top = top + 'px';
+};
+
+document.onmouseout = function (e) {
+  if (tooltipElem) {
+    tooltipElem.remove();
+    tooltipElem = null;
+  }
+};
+
+document.onmouseout = function (e) {
+  if (tooltipElem) {
+    tooltipElem.remove();
+    tooltipElem = null;
+  }
+};
+
 //Отрисовка нового дела
 function renderItem(text) {
   const newElement = itemTemplate.cloneNode(true);
@@ -24,7 +79,12 @@ function renderItem(text) {
 
 //Сабмит
 function handleSubmit() {
-  renderItem(formInput.value);
+  if (formInput.value != '') {
+    renderItem(formInput.value);
+    formInput.value = '';
+  } else {
+    alert('Давайте не будем тратить время в пустую');
+  }
 }
 
 function setListenersForItem(element) {
@@ -47,3 +107,4 @@ function handleDelete(event) {
 function handleEdit() {}
 
 function handleDuplicate() {}
+render();
