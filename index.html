@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Список дел</title>
+</head>
+
+<body class="page">
+    <div class="todo">
+        <header class="header">
+            <h1 class="title">Cписок дел</h1>
+        </header>
+        <main class="main">
+            <form class="form">
+                <input type="text" class="form__input" placeholder="Что-то нужно записать...">
+                <input type="button" class="form__submit" value="Добавить">
+            </form>
+            <ul class="list">
+                <li class="list-item">
+                    <span class="list-item__header">Что-то нужно сделать</span>
+                    <div class="list-item__actions">
+                        <button class="list-item__button edit"></button>
+                        <button class="list-item__button duplicate"></button>
+                        <button class="list-item__button delete"></button>
+                    </div>
+                </li>
+            </ul>
+        </main>
+    </div>
+    <footer class="footer">Обычный список дел</footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

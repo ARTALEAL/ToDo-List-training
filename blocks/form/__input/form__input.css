@@ -1,0 +1,22 @@
+.form__input {
+    min-width: 510px;
+	min-height: 50px;
+
+	background: #ffffff;
+	border-radius: 5px;
+
+	font-style: normal;
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 29px;
+
+	text-align: center;
+
+	color: #000000;
+}
+
+.form__input::placeholder {
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 29px;
+}

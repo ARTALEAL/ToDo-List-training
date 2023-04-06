@@ -1,0 +1,4 @@
+.list-item__actions {
+    display: flex;
+    align-items: center;
+}

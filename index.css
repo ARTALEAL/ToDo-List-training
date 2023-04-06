@@ -1,0 +1,20 @@
+@import url(vendor/normalize.css);
+@import url(vendor/fonts/inter.css);
+
+@import url(blocks/page/page.css);
+@import url(blocks/header/header.css);
+@import url(blocks/todo/todo.css);
+
+
+/*Инпут*/
+@import url(blocks/form/form.css);
+@import url(blocks/form/__submit/form__submit.css);
+@import url(blocks/form/__input/form__input.css);
+/* Оформление списка */
+@import url(blocks/list/list.css);
+@import url(blocks/list-item/list-item.css);
+@import url(blocks/list-item/__header/list-item__header.css);
+@import url(blocks/list-item/__actions/list-item__actions.css);
+@import url(blocks/list-item/__button/list-item__button.css);
+
+@import url(blocks/footer/footer.css);
