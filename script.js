@@ -24,12 +24,12 @@ let tooltipElem;
 document.onmouseover = function (event) {
   let target = event.target;
 
-  // если у нас есть подсказка...
+  // если есть подсказка
   let tooltipHtml = target.dataset.tooltip;
   console.log(tooltipHtml);
   if (!tooltipHtml) return;
 
-  // ...создадим элемент для подсказки
+  //Cоздание подсказки
 
   tooltipElem = document.createElement('div');
   tooltipElem.className = 'tooltip';
@@ -106,5 +106,12 @@ function handleDelete(event) {
 
 function handleEdit() {}
 
-function handleDuplicate() {}
+function handleDuplicate(event) {
+  const currentListItem = event.target.closest('.list-item');
+  const currentElementHeader =
+    currentListItem.querySelector('.list-item__header');
+  const text = currentElementHeader.textContent;
+  renderItem(text);
+}
+
 render();
