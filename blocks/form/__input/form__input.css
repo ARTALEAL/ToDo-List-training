@@ -1,22 +1,36 @@
 .form__input {
-    min-width: 510px;
-	min-height: 50px;
+  min-width: 510px;
+  min-height: 50px;
 
-	background: #ffffff;
-	border-radius: 5px;
+  background: #ffffff;
+  border-radius: 5px;
 
-	font-style: normal;
-	font-weight: 900;
-	font-size: 24px;
-	line-height: 29px;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
 
-	text-align: center;
+  text-align: center;
 
-	color: #000000;
+  color: #000000;
 }
 
 .form__input::placeholder {
-	font-weight: 900;
-	font-size: 24px;
-	line-height: 29px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+@media screen and (max-width: 719px) {
+  .form__input {
+    min-width: 320px;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .form__input {
+    width: 320px;
+    font-size: 20px;
+    box-sizing: border-box;
+  }
 }

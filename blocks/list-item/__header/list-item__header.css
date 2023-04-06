@@ -4,3 +4,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@media screen and (max-width: 720px) {
+  .list-item__header {
+    min-width: 300px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .list-item__header {
+    min-width: 200px;
+  }
+}
