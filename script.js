@@ -118,10 +118,22 @@ function setListenersForItem(element) {
 
 function handleDelete(event) {
   const currentListItem = event.target.closest('.list-item');
-  console.log(currentListItem.id);
+
+  const id = Number(currentListItem.id);
+  console.log(id);
+
+  // Вариант через find
+  // const index = items.findIndex((task) => task.id === id);
+  // Удаление элемента массива
+  // items.splice(index, 1);
+
+  //Удаление элемента из массива
+  items = items.filter((task) => task.id !== id);
+
   currentListItem.remove();
   tooltipElem.remove();
-  resetEditMode();
+  saveToLocalStorage();
+  resetEdit();
 }
 
 //Редактируемый элемент
@@ -142,8 +154,16 @@ function handleEdit(event) {
 
 function handleEditConfirm() {
   editingItem.querySelector('.list-item__header').textContent = formInput.value;
+
+  //Измененин в массиве
+  const id = Number(editingItem.id);
+  const index = items.findIndex((task) => task.id === id);
+
+  items[index].task = formInput.value;
+
   formInput.blur();
   resetEdit();
+  saveToLocalStorage();
 }
 
 function resetEdit() {
@@ -162,7 +182,14 @@ function handleDuplicate(event) {
   const currentElementHeader =
     currentListItem.querySelector('.list-item__header');
   const text = currentElementHeader.textContent;
-  renderItem(text);
+  newTask = {
+    id: Date.now(),
+    task: text,
+  };
+  // добавление в массив
+  items.push(newTask);
+  renderItem(text, newTask.id);
+  saveToLocalStorage();
 }
 
 //LocalStorage
