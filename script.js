@@ -1,5 +1,11 @@
 //Список дел
-const items = ['Что-то нужно сделать', 'Второе дело'];
+let items = [];
+
+if (localStorage.getItem('items')) {
+  items = JSON.parse(localStorage.getItem('items'));
+}
+
+console.log(items);
 
 const form = document.querySelector('.form');
 const list = document.querySelector('.list');
@@ -22,7 +28,9 @@ formInput.addEventListener(
 formButton.addEventListener('click', handleSubmit);
 
 function render() {
-  items.forEach(renderItem);
+  items.forEach(function (item) {
+    renderItem(item.task, item.id);
+  });
 }
 
 //Подсказки на кнопках
@@ -66,11 +74,15 @@ document.onmouseout = function (e) {
   }
 };
 
+let newTask;
+
 //Отрисовка нового дела
-function renderItem(text) {
+function renderItem(text, identy) {
   const newElement = itemTemplate.cloneNode(true);
   const header = newElement.querySelector('.list-item__header');
+  const listItem = newElement.querySelector('.list-item');
   header.textContent = text;
+  listItem.setAttribute('id', identy);
 
   setListenersForItem(newElement);
   list.appendChild(newElement);
@@ -79,7 +91,14 @@ function renderItem(text) {
 //Сабмит
 function handleSubmit() {
   if (formInput.value != '') {
-    renderItem(formInput.value);
+    newTask = {
+      id: Date.now(),
+      task: formInput.value,
+    };
+    // добавление в массив
+    items.push(newTask);
+    saveToLocalStorage();
+    renderItem(formInput.value, newTask.id);
     formInput.value = '';
   } else {
     alert('Давайте не будем тратить время в пустую');
@@ -99,6 +118,7 @@ function setListenersForItem(element) {
 
 function handleDelete(event) {
   const currentListItem = event.target.closest('.list-item');
+  console.log(currentListItem.id);
   currentListItem.remove();
   tooltipElem.remove();
   resetEditMode();
@@ -143,6 +163,11 @@ function handleDuplicate(event) {
     currentListItem.querySelector('.list-item__header');
   const text = currentElementHeader.textContent;
   renderItem(text);
+}
+
+//LocalStorage
+function saveToLocalStorage() {
+  localStorage.setItem('items', JSON.stringify(items));
 }
 
 render();
