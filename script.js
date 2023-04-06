@@ -5,8 +5,6 @@ if (localStorage.getItem('items')) {
   items = JSON.parse(localStorage.getItem('items'));
 }
 
-console.log(items);
-
 const form = document.querySelector('.form');
 const list = document.querySelector('.list');
 const formInput = document.querySelector('.form__input');
