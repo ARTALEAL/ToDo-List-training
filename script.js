@@ -1,5 +1,5 @@
 //Список дел
-const items = ['Что-то нужно сделать'];
+const items = ['Что-то нужно сделать', 'Второе дело'];
 
 const form = document.querySelector('.form');
 const list = document.querySelector('.list');

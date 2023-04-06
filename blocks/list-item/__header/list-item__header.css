@@ -1,4 +1,6 @@
 .list-item__header {
-    min-width: 500px;
-    text-align: left;
+  min-width: 500px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
