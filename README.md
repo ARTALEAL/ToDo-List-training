@@ -28,4 +28,4 @@
 
 **Ссылка на проект**
 
-[Проект Место](https://artaleal.github.io/mesto/)
+[Проект ToDo List](https://artaleal.github.io/ToDo-List-training/)
