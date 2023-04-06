@@ -1,11 +1,18 @@
 //Список дел
 const items = ['Что-то нужно сделать'];
 
+const form = document.querySelector('.form');
 const list = document.querySelector('.list');
 const formInput = document.querySelector('.form__input');
 const formButton = document.querySelector('.form__submit');
 const itemTemplate = document.querySelector('.list-item-template').content;
 
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
+  if (formButton.value != 'Добавить') {
+    handleEditConfirm();
+  } else handleSubmit();
+});
 formInput.addEventListener('focus', () => (formInput.placeholder = ''));
 formInput.addEventListener(
   'blur',
@@ -26,7 +33,6 @@ document.onmouseover = function (event) {
 
   // если есть подсказка
   let tooltipHtml = target.dataset.tooltip;
-  console.log(tooltipHtml);
   if (!tooltipHtml) return;
 
   //Cоздание подсказки
@@ -51,13 +57,6 @@ document.onmouseover = function (event) {
 
   tooltipElem.style.left = left + 'px';
   tooltipElem.style.top = top + 'px';
-};
-
-document.onmouseout = function (e) {
-  if (tooltipElem) {
-    tooltipElem.remove();
-    tooltipElem = null;
-  }
 };
 
 document.onmouseout = function (e) {
@@ -101,10 +100,42 @@ function setListenersForItem(element) {
 function handleDelete(event) {
   const currentListItem = event.target.closest('.list-item');
   currentListItem.remove();
+  tooltipElem.remove();
   resetEditMode();
 }
 
-function handleEdit() {}
+//Редактируемый элемент
+let editingItem = null;
+
+function handleEdit(event) {
+  editingItem = event.target.closest('.list-item');
+
+  const currentHeadingText =
+    editingItem.querySelector('.list-item__header').textContent;
+  formInput.value = currentHeadingText;
+
+  formButton.value = 'Изменить';
+  formButton.removeEventListener('click', handleSubmit);
+  formButton.addEventListener('click', handleEditConfirm);
+  formInput.focus();
+}
+
+function handleEditConfirm() {
+  editingItem.querySelector('.list-item__header').textContent = formInput.value;
+  formInput.blur();
+  resetEdit();
+}
+
+function resetEdit() {
+  formInput.value = '';
+
+  formButton.value = 'Добавить';
+
+  formButton.removeEventListener('click', handleEditConfirm);
+  formButton.addEventListener('click', handleSubmit);
+
+  editingItem = null;
+}
 
 function handleDuplicate(event) {
   const currentListItem = event.target.closest('.list-item');
